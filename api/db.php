@@ -2,8 +2,8 @@
 //acces bdd
 $host = 'localhost';
 $db_name = 'gsb_quality';
-$user = 'root';
-$pass = '';
+$user = 'admin';
+$pass = 'admin';
 //essai de connexion
 try{
     //on instencie un objet pdo

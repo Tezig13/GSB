@@ -15,7 +15,7 @@ function RegisterForm({ onConnexionReussie }) {
             nom: nom,
             prenom: prenom,
             email: email,
-            password: password
+            mdp: password // <-- MODIF 1 : PHP attend "mdp", pas "password"
         }
 
         fetch('http://localhost/GSB_Quality/api/register.php', {
@@ -29,12 +29,11 @@ function RegisterForm({ onConnexionReussie }) {
             if (response.ok) {
                 return response.json().then(data => {
                     alert("Compte créé ! Bienvenue.")
-                    
-                    // On construit l'objet utilisateur
-                    const userData = { nom: nom, prenom: prenom, email: email }
-                    
-                    // ON OUVRE LA PORTE (Appelle la fonction du parent)
-                    onConnexionReussie(userData) 
+                    // Au lieu de recréer l'objet à la main (qui n'a pas d'ID),
+                    // on utilise celui renvoyé par le PHP (qui contient l'ID généré)
+                    if (data.user) {
+                        onConnexionReussie(data.user) 
+                    }
                 })
             } else {
                 // Si le serveur répond une erreur (400, 503...)

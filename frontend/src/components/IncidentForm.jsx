@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-function IncidentForm({ connectedUser }) {
+function IncidentForm({ connectedUser, onIncidentAdded}) {
   //on cree une variaable et on peut la modifier avec setMedicaments
   //useState permet de creer des etats dans les composants
   const [medicaments, setMedicaments] = useState([])
@@ -24,6 +24,8 @@ function IncidentForm({ connectedUser }) {
   const [lot, setLot] = useState("")
   const [desc, setDesc] = useState("")
   const [selectedMed, setSelectedMed] = useState("")
+  const [date, setDate] = useState("")
+  const [urgence, setUrgence] = useState("Moyenne")
 
   //fonction qui gere l envoi du formulaire
   //e est un objet qui contient les informations sur l evenement
@@ -35,7 +37,9 @@ function IncidentForm({ connectedUser }) {
       num_lot: lot,
       description: desc,
       id_medicament: selectedMed,
-      id_visiteur: connectedUser.id
+      id_visiteur: connectedUser.id,
+      date_incident: date,
+      niveau_urgence: urgence
     }
     //on envoie le colis a l api
     fetch('http://localhost/GSB_Quality/api/createIncident.php', {
@@ -49,6 +53,11 @@ function IncidentForm({ connectedUser }) {
       setLot("")
       setDesc("")
       setSelectedMed("")
+      setDate("")
+      setUrgence("Moyenne")
+      if (onIncidentAdded) {
+          onIncidentAdded()
+      }
     })
   }
 
@@ -71,6 +80,28 @@ function IncidentForm({ connectedUser }) {
                 <option key={med.id} value={med.id}>{med.nomCommercial}</option>
             ))}
             </select>
+        </div>
+        <div className="form-group">
+            <label>Gravité de l'incident :</label>
+            <select 
+                value={urgence} 
+                onChange={(e) => setUrgence(e.target.value)}
+                style={{ fontWeight: 'bold' }} // Petit style en plus
+            >
+                <option value="Faible"> Faible (Information)</option>
+                <option value="Moyenne"> Moyenne (À surveiller)</option>
+                <option value="Haute"> Haute (Urgent)</option>
+                <option value="Critique"> Critique (Danger immédiat)</option>
+            </select>
+        </div>
+        <div className="form-group">
+            <label>Date de l'incident:</label>
+            <input
+                type="date"
+                value={date}
+                onChange={(e) => setDate(e.target.value)}
+                required
+            />
         </div>
 
         {/* Champ Lot */}

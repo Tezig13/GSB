@@ -51,7 +51,16 @@ if (
         ]);
 
         http_response_code(201);
-        echo json_encode(["message" => "Utilisateur créé avec succès !"]);
+        echo json_encode([
+                "message" => "Compte créé",
+                "user" => [
+                    "id" => $id,          
+                    "nom" => $data->nom,
+                    "prenom" => $data->prenom,
+                    "email" => $data->email,
+                    "role" => "visiteur"
+                ]
+            ]);
 
     } catch(PDOException $e) {
         // Erreur souvent si l email existe déjà

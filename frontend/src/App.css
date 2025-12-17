@@ -1,6 +1,6 @@
 /* src/App.css */
 
-/* 1. RESET & POLICE */
+/* 1. RESET GLOBAL */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -9,139 +9,161 @@
 }
 
 body {
-  background-color: #f0f2f5; /* Gris très clair moderne */
+  background-color: #f4f6f9; /* Gris très clair pro */
   color: #333;
+  /* ON ENLÈVE LE FLEXBOX ICI POUR QUE LA NAV PRENNE TOUT L'ÉCRAN */
   min-height: 100vh;
+}
+
+/* 2. LA BARRE DE NAVIGATION (Plein écran) */
+.navbar {
+  width: 100%;             /* Prend toute la largeur */
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  background-color: #2c3e50; /* Bleu foncé GSB */
+  padding: 15px 30px;      /* Plus d'espace sur les côtés */
+  color: white;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Ombre sous la barre */
+  position: sticky;        /* La barre reste en haut si on scrolle */
+  top: 0;
+  z-index: 1000;
 }
 
-/* 2. LE CONTENEUR PRINCIPAL */
+.nav-brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 15px;
+}
+
+.nav-user {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* 3. LE CONTENEUR DU CONTENU (Centré mais large) */
 .app-container {
-  width: 100%;
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
+  width: 100%;           /* Prend 100% de la largeur de l'écran */
+  max-width: none;       /* SUPPRIME la limite (c'était ça qui bloquait à 900px ou 1400px) */
+  margin: 40px 0;        /* Marge en haut/bas, mais 0 sur les côtés */
+  padding: 0 40px;       /* Un peu d'air sur les côtés (gauche/droite) pour pas que ça colle aux bords */
+  box-sizing: border-box; /* Empêche le padding de casser la largeur */
 }
 
-/* 3. LES CARTES (Les boîtes blanches) */
+/* 4. LES CARTES (Formulaires) */
 .card {
   background: white;
-  padding: 30px;
+  padding: 2rem;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Ombre douce */
-  width: 100%;
-  max-width: 450px; 
-  margin: 20px auto; /* Centré */
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  
+  width: 100%;      /* Elle doit prendre toute la place que le container lui donne */
+  max-width: 100%;  /* Au cas où, on force le 100% */
+  margin-bottom: 20px; /* Espace entre les cartes */
+  box-sizing: border-box;
 }
 
-/* Carte plus large pour le formulaire incident */
-.card.large {
-  max-width: 700px;
-}
-
-/* 4. LES TITRES */
-h1, h2 {
-  text-align: center;
-  color: #2c3e50; /* Bleu foncé */
-  margin-bottom: 20px;
-}
-
-h1 { font-size: 1.8rem; }
-h2 { font-size: 1.5rem; }
-
-/* 5. LES CHAMPS (INPUTS) */
+/* 5. INPUTS & BOUTONS */
 .form-group {
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 
 label {
   display: block;
-  margin-bottom: 5px;
+  margin-bottom: 8px;
   font-weight: 600;
-  color: #555;
-  font-size: 0.9rem;
+  color: #2c3e50;
 }
 
 input, select, textarea {
   width: 100%;
-  padding: 12px;
-  border: 1px solid #ddd;
-  border-radius: 8px; /* Coins arrondis */
+  padding: 12px 15px;
+  border: 1px solid #dfe6e9;
+  border-radius: 8px;
+  background-color: #fdfdfd;
   font-size: 1rem;
-  transition: border 0.3s;
+  transition: all 0.3s ease;
 }
 
 input:focus, select:focus, textarea:focus {
-  border-color: #3498db; /* Bleu GSB au focus */
+  border-color: #3498db;
   outline: none;
-  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
 }
 
 textarea {
-  min-height: 100px;
+  min-height: 120px;
   resize: vertical;
 }
 
-/* 6. LES BOUTONS */
 button {
-  width: 100%;
-  padding: 12px;
-  border: none;
-  border-radius: 8px;
-  font-size: 1rem;
-  font-weight: bold;
   cursor: pointer;
-  transition: background 0.3s;
-  margin-top: 10px;
+  border: none;
+  font-weight: 600;
+  transition: transform 0.2s, background-color 0.2s;
 }
 
+button:active {
+  transform: scale(0.98);
+}
+
+/* STYLES DES BOUTONS */
+.nav-btn {
+  background: transparent;
+  color: #bdc3c7;
+  padding: 8px 16px;
+  border-radius: 20px;
+}
+.nav-btn:hover { background: rgba(255, 255, 255, 0.1); color: white; }
+.nav-btn.active { background: #3498db; color: white; }
+
 .btn-primary {
-  background-color: #3498db; /* Bleu */
+  width: 100%;
+  padding: 14px;
+  background-color: #3498db;
   color: white;
+  border-radius: 8px;
+  font-size: 1.1rem;
 }
 .btn-primary:hover { background-color: #2980b9; }
 
-.btn-success {
-  background-color: #27ae60; /* Vert */
+.btn-logout {
+  background-color: #e74c3c;
   color: white;
-}
-.btn-success:hover { background-color: #219150; }
-
-.btn-danger {
-  background-color: #e74c3c; /* Rouge */
-  color: white;
-  width: auto; /* Bouton pas large */
   padding: 8px 15px;
-  font-size: 0.9rem;
+  border-radius: 6px;
 }
-.btn-danger:hover { background-color: #c0392b; }
+.btn-logout:hover { background-color: #c0392b; }
 
-/* 7. LE LIEN (Switch Login/Register) */
-.switch-link {
-  text-align: center;
-  margin-top: 15px;
-  font-size: 0.9rem;
-}
-.switch-link button {
-  background: none;
-  color: #3498db;
-  width: auto;
-  padding: 0;
-  margin: 0;
-  text-decoration: underline;
-}
-.switch-link button:hover { color: #2980b9; }
+/* 6. RESPONSIVE (POUR MOBILE) */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column; /* On empile tout verticalement sur mobile */
+    gap: 15px;
+    padding: 15px;
+  }
+  
+  .nav-links {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .nav-user {
+    width: 100%;
+    justify-content: space-between; /* Nom à gauche, bouton à droite */
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 10px;
+  }
 
-/* 8. HEADER (Barre du haut une fois connecté) */
-.header-bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: white;
-  padding: 15px 20px;
-  border-radius: 12px;
-  margin-bottom: 20px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  .card {
+    padding: 20px; /* Moins de marge interne sur mobile */
+  }
+  
+  h2 { font-size: 1.3rem; }
 }

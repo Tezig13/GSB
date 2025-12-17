@@ -25,12 +25,19 @@ $json = file_get_contents('php://input');
 //la fonction json_decode permet de transformer le json en objet php
 $data = json_decode($json);
 
-//on verifie que num_lot et id_medicament ne sont pas vides
-if (!empty($data->num_lot) && !empty($data->id_medicament)){
+//on verifie que les data ne sont pas vides
+if (
+    !empty($data->num_lot) && 
+    !empty($data->description) && 
+    !empty($data->id_medicament) && 
+    !empty($data->id_visiteur) &&
+    !empty($data->date_incident) &&
+    !empty($data->niveau_urgence) 
+){
     try{
         //requete sql pour inserer un incident en bdd
         //on utilise des marqueurs nominatifs pour eviter les injections sql
-        $sql = "INSERT INTO rapport_incident (num_lot, description, id_medicament, id_visiteur) VALUES (:lot, :desc, :med, :visi)";
+        $sql = "INSERT INTO rapport_incident (num_lot, description, id_medicament, id_visiteur, date_incident, niveau_urgence) VALUES (:lot, :desc, :med, :visi, :date, :urgence)";
         $commande = $pdo->prepare($sql);
         //on execute la requete en passant un tableau associatif avec les valeurs a inserer
         //donc PDO va prendre la valeur, la nettoyer (mettre des guillemets, echapper les caracteres speciaux, etc) et l'inserer a la place du marqueur
@@ -38,7 +45,9 @@ if (!empty($data->num_lot) && !empty($data->id_medicament)){
             ':lot' => $data->num_lot,
             ':desc' => $data->description,
             ':med' => $data->id_medicament,
-            ':visi' => $data->id_visiteur
+            ':visi' => $data->id_visiteur,
+            ':date' => $data->date_incident,
+            ':urgence' => $data->niveau_urgence
         ]);
         //on envoie un message de succes
         http_response_code(201); //201=cree avec succes

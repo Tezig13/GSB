@@ -39,7 +39,8 @@ if (!empty($data->email) && !empty($data->password)) {
                     "id" => $user['id'],
                     "nom" => $user['nom'],
                     "prenom" => $user['prenom'],
-                    "email" => $user['email']
+                    "email" => $user['email'],
+                    "role" => $user['role']
                 ]
             ]);
         } else {
