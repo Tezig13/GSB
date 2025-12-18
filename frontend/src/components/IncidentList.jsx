@@ -121,7 +121,16 @@ function IncidentList({ connectedUser }) {
                                     </td>
 
                                     {/* DESCRIPTION UTILISATEUR */}
-                                    <td style={{ padding: '20px 10px', color: '#555', lineHeight: '1.5', fontSize: '0.95rem' }}>
+                                    <td style={{ 
+                                        padding: '20px 10px', 
+                                        color: '#555', 
+                                        lineHeight: '1.5', 
+                                        fontSize: '0.95rem',
+                                        verticalAlign: 'top',
+                                        // MODIF 2 : Ces deux lignes forcent le retour à la ligne
+                                        whiteSpace: 'normal',
+                                        wordBreak: 'break-word'
+                                    }}>
                                         {inc.description}
                                     </td>
 

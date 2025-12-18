@@ -47,7 +47,7 @@ function RegisterForm({ onConnexionReussie }) {
 
     // 3. LE HTML DU FORMULAIRE
     return (
-        <div className="card">
+        <div className="card-auth">
             <h2>Création de compte</h2>
             <form onSubmit={handleInscription}>
                 <div className="form-group">

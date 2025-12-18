@@ -33,7 +33,7 @@ function LoginForm({ onConnexionReussie }) {
     }
 
     return (
-        <div className="card">
+        <div className="card-auth">
             <h2>Connexion GSB</h2>
             <form onSubmit={handleLogin}>
                 <div className="form-group">

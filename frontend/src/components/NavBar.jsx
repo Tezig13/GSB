@@ -25,7 +25,6 @@ function NavBar({ user, onLogout, onChangePage, activePage }) {
                 <button 
                     className={activePage === 'admin_incidents' ? "nav-btn active" : "nav-btn"}
                     onClick={() => onChangePage('admin_incidents')}
-                    style={{ color: '#ff7675' }}
                 >
                     Incidents
                 </button>
@@ -33,7 +32,6 @@ function NavBar({ user, onLogout, onChangePage, activePage }) {
                 <button 
                     className={activePage === 'admin_users' ? "nav-btn active" : "nav-btn"}
                     onClick={() => onChangePage('admin_users')}
-                    style={{ color: '#a29bfe' }} // Violet clair
                 >
                     Équipe
                 </button>

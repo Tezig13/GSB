@@ -132,6 +132,14 @@ button:active {
   font-size: 1.1rem;
 }
 .btn-primary:hover { background-color: #2980b9; }
+.btn-success {
+  width: 100%;
+  padding: 14px;
+  background-color: #3498db;
+  color: white;
+  border-radius: 8px;
+  font-size: 1.1rem;
+}
 
 .btn-logout {
   background-color: #e74c3c;
@@ -166,4 +174,81 @@ button:active {
   }
   
   h2 { font-size: 1.3rem; }
+}
+.card-auth {
+  background: white;
+  width: 100%;
+  max-width: 450px;       /* <--- C'est ici qu'on bloque la largeur ! */
+  margin: 60px auto;      /* Centre la carte horizontalement avec une marge en haut */
+  padding: 40px;
+  border-radius: 16px;    /* Coins bien arrondis */
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1); /* Belle ombre portée "flottante" */
+  box-sizing: border-box;
+}
+
+.card-auth h2 {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 30px;
+  font-size: 1.8rem;
+}
+
+.card-auth .form-group {
+  margin-bottom: 20px;
+}
+
+.card-auth label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #7f8c8d;
+}
+
+.card-auth input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #dfe6e9;
+  border-radius: 8px;
+  background-color: #f8f9fa;
+  font-size: 1rem;
+  box-sizing: border-box;
+  transition: 0.3s;
+}
+
+.card-auth input:focus {
+  border-color: #3498db;
+  background-color: white;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+}
+
+.card-auth button {
+  width: 100%;
+  padding: 14px;
+  font-size: 1.1rem;
+  margin-top: 15px;
+  border-radius: 8px;
+}
+/* --- LE LIEN SOUS LA CARTE (Centré) --- */
+.switch-link {
+  text-align: center;      /* Centre le texte horizontalement */
+  margin-top: 20px;        /* Un peu d'espace sous la carte */
+  font-size: 1rem;         /* Taille lisible */
+  color: #7f8c8d;          /* Gris élégant */
+}
+
+/* Le bouton "S'inscrire" / "Se connecter" */
+.switch-link button {
+  background: none;
+  border: none;
+  color: #3498db;          /* Bleu GSB */
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: underline; /* Souligné pour montrer que c'est un lien */
+  padding: 0 5px;
+  font-size: 1rem;
+}
+
+.switch-link button:hover {
+  color: #2980b9;          /* Bleu plus foncé au survol */
 }
